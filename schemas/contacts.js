@@ -7,3 +7,4 @@
 // });
 
 // module.exports = { addSchema };
+console.log("hello");
