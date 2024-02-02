@@ -7,7 +7,7 @@ const { handleMongooseError } = require("../helpers");
 const userSchema = new Schema(
   {
     password: {
-        type: String,
+      type: String,
       required: [true, "Set password for user"],
     },
     email: {
@@ -20,7 +20,10 @@ const userSchema = new Schema(
       enum: ["starter", "pro", "business"],
       default: "starter",
     },
-    token: String,
+    token: {
+      type: String,
+      default: "",
+    },
   },
   { versionKey: false, timestamps: true }
 );
