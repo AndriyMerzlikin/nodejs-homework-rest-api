@@ -14,8 +14,12 @@ const getAll = async (req, res) => {
 };
 
 const getById = async (req, res) => {
+  const { _id } = req.user;
   const { id } = req.params;
-  const result = await Contact.findById(id);
+  const result = await Contact.findById({
+    _id: id,
+    owner: _id,
+  });
   if (!result) {
     throw HttpError(404, "Not found");
   }
@@ -29,8 +33,12 @@ const add = async (req, res) => {
 };
 
 const deleteById = async (req, res) => {
+  const { _id } = req.user;
   const { id } = req.params;
-  const result = await Contact.findByIdAndDelete(id);
+  const result = await Contact.findByIdAndDelete({
+    _id: id,
+    owner: _id,
+  });
   if (!result) {
     throw HttpError(404, "Not found");
   }
