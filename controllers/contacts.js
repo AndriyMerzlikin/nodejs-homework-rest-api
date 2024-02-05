@@ -16,7 +16,7 @@ const getAll = async (req, res) => {
 const getById = async (req, res) => {
   const { _id } = req.user;
   const { id } = req.params;
-  const result = await Contact.findById({
+  const result = await Contact.findOne({
     _id: id,
     owner: _id,
   });
