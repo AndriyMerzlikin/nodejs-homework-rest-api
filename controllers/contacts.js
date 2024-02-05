@@ -35,7 +35,7 @@ const add = async (req, res) => {
 const deleteById = async (req, res) => {
   const { _id } = req.user;
   const { id } = req.params;
-  const result = await Contact.findByIdAndDelete({
+  const result = await Contact.findOneAndDelete({
     _id: id,
     owner: _id,
   });
