@@ -46,10 +46,15 @@ const deleteById = async (req, res) => {
 };
 
 const updateById = async (req, res) => {
+  const { _id } = req.user;
   const { id } = req.params;
-  const result = await Contact.findByIdAndUpdate(id, req.body, {
-    new: true,
-  });
+  const result = await Contact.findOneAndUpdate(
+    { _id: id, owner: _id },
+    req.body,
+    {
+      new: true,
+    }
+  );
   if (!result) {
     throw HttpError(404, "Not found");
   }
@@ -57,10 +62,15 @@ const updateById = async (req, res) => {
 };
 
 const updateFavorite = async (req, res) => {
+  const { _id } = req.user;
   const { id } = req.params;
-  const result = await Contact.findByIdAndUpdate(id, req.body, {
-    new: true,
-  });
+  const result = await Contact.findOneAndUpdate(
+    { _id: id, owner: _id },
+    req.body,
+    {
+      new: true,
+    }
+  );
   if (!result) {
     throw HttpError(404, "Not found");
   }
